@@ -1,0 +1,101 @@
+Level 1/10
+split,
+exact p,
+exact q,
+
+Level 2/10
+intro h,
+split,
+cases h with p q,
+exact q,
+cases h with p q,
+exact p,
+
+Level 3/10
+intros f h,
+cases f with p q,
+cases h with q2 r,
+split,
+exact p,
+exact r,
+
+Level 4/10
+intro h,
+cases h with x y,
+intro qr,
+cases qr with q r,
+split,
+intro p,
+apply q,
+apply x,
+exact p,
+intro r2,
+apply y,
+apply r,
+exact r2,
+
+Level 5/10
+intros hpq hqr,
+split,
+intro p,
+apply hqr.1,
+apply hpq.1,
+exact p,
+intro r,
+apply hpq.2,
+apply hqr.2,
+exact r,
+
+Level 6/10
+intro q,
+right,
+exact q,
+
+Level 7/10
+intro h,
+cases h with p q,
+right,
+exact p,
+left,
+exact q,
+
+Level 8/10
+split,
+intro h,
+cases h with p hqr,
+cases hqr with q r,
+left,
+split,
+exact p,
+exact q,
+right,
+split,
+exact p,
+exact r,
+intro h,
+cases h with x y,
+cases x with p q,
+split,
+exact p,
+left,
+exact q,
+cases y with p r,
+split,
+exact p,
+right,
+exact r,
+
+Level 9/10
+intro h,
+cases h with p np,
+rw not_iff_imp_false at np,
+exfalso,
+apply np,
+exact p,
+
+Level 10/10
+intro h,
+intro p,
+repeat {rw not_iff_imp_false at h},
+by_cases p: P; by_cases q: Q,
+repeat {cc},
