@@ -177,13 +177,23 @@ end
 theorem disj_as_negconj :
   P∨Q → ¬(¬P∧¬Q)  :=
 begin
-  sorry,
+  intro PorQ,
+  intro nPenQ,
+  cases nPenQ with nPnQ,
+  cases PorQ,
+  contradiction,
+  contradiction,
 end
 
 theorem conj_as_negdisj :
   P∧Q → ¬(¬P∨¬Q)  :=
 begin
-  sorry,
+  intro PeQ,
+  intro nPonQ,
+  cases PeQ with PeQ,
+  cases nPonQ,
+  contradiction,
+  contradiction,
 end
 
 
@@ -194,13 +204,28 @@ end
 theorem demorgan_disj :
   ¬(P∨Q) → (¬P ∧ ¬Q)  :=
 begin
-  sorry,
+  intro PorQ,
+  split,
+  intro hp,
+  have PorQ : P ∨ Q,
+  left,
+  exact hp,
+  contradiction,
+  intro hq,
+  have PorQ : P ∨ Q,
+  right,
+  exact hq,
+  contradiction,
 end
 
 theorem demorgan_disj_converse :
   (¬P ∧ ¬Q) → ¬(P∨Q)  :=
 begin
-  sorry,
+  intros nPenQ PorQ,
+  cases nPenQ with nP nQ,
+  cases PorQ,
+  contradiction,
+  contradiction,
 end
 
 theorem demorgan_conj :
