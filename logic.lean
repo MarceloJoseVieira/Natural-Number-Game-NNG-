@@ -231,7 +231,18 @@ end
 theorem demorgan_conj :
   ¬(P∧Q) → (¬Q ∨ ¬P)  :=
 begin
-  sorry,
+  intro PeQ,
+  by_contra nQornP,
+  apply PeQ,
+  split,
+  by_contra nP,
+  apply nQornP,
+  right,
+  exact nP,
+  by_contra nQ,
+  apply nQornP,
+  left,
+  exact nQ,
 end
 
 theorem demorgan_conj_converse :
@@ -259,7 +270,8 @@ end
 theorem distr_conj_disj :
   P∧(Q∨R) → (P∧Q)∨(P∧R)  :=
 begin
-  sorry,
+  intro hp,
+  cases hp with P QorR,
 end
 
 theorem distr_conj_disj_converse :
