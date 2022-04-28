@@ -248,19 +248,61 @@ end
 theorem demorgan_conj_converse :
   (¬Q ∨ ¬P) → ¬(P∧Q)  :=
 begin
-  sorry,
+  intro nQornP,
+  intro PeQ,
+  cases PeQ with hP hQ,
+  cases nQornP,
+  contradiction,
+  contradiction,
 end
 
 theorem demorgan_conj_law :
   ¬(P∧Q) ↔ (¬Q ∨ ¬P)  :=
 begin
-  sorry,
+  split,
+  intro PeQ,
+  by_contra nQornP,
+  apply PeQ,
+  split,
+  by_contra nP,
+  apply nQornP,
+  right,
+  exact nP,
+  by_contra nQ,
+  apply nQornP,
+  left,
+  exact nQ,
+
+  intro nQornP,
+  intro PeQ,
+  cases PeQ with hP hQ,
+  cases nQornP,
+  contradiction,
+  contradiction,
 end
 
 theorem demorgan_disj_law :
   ¬(P∨Q) ↔ (¬P ∧ ¬Q)  :=
 begin
-  sorry,
+  split,
+  intro PorQ,
+  split,
+  intro hp,
+  have PorQ : P ∨ Q,
+  left,
+  exact hp,
+  contradiction,
+  intro hq,
+  have PorQ : P ∨ Q,
+  right,
+  exact hq,
+  contradiction,
+
+  intros nPenQ PorQ,
+  cases nPenQ with nP nQ,
+  cases PorQ,
+  contradiction,
+  contradiction,
 end
 
 ------------------------------------------------
@@ -270,8 +312,7 @@ end
 theorem distr_conj_disj :
   P∧(Q∨R) → (P∧Q)∨(P∧R)  :=
 begin
-  intro hp,
-  cases hp with P QorR,
+  sorry,
 end
 
 theorem distr_conj_disj_converse :
@@ -300,13 +341,22 @@ end
 theorem curry_prop :
   ((P∧Q)→R) → (P→(Q→R))  :=
 begin
-  sorry,
+  intros PeQR hp hq,
+  apply PeQR,
+  split,
+  exact hp,
+  exact hq,
 end
 
 theorem uncurry_prop :
   (P→(Q→R)) → ((P∧Q)→R)  :=
 begin
-  sorry,
+  intros pqr PeQ,
+  apply pqr,
+  cases PeQ with hp hq,
+  exact hp,
+  cases PeQ with hp hq,
+  exact hq,
 end
 
 
@@ -317,7 +367,8 @@ end
 theorem impl_refl :
   P → P  :=
 begin
-  sorry,
+  intro hp,
+  exact hp,
 end
 
 ------------------------------------------------
@@ -327,37 +378,59 @@ end
 theorem weaken_disj_right :
   P → (P∨Q)  :=
 begin
-  sorry,
+  intro hp,
+  left,
+  exact hp,
 end
 
 theorem weaken_disj_left :
   Q → (P∨Q)  :=
 begin
-  sorry,
+  intro hq,
+  right,
+  exact hq,
 end
 
 theorem weaken_conj_right :
   (P∧Q) → P  :=
 begin
-  sorry,
+  intro PeQ,
+  cases PeQ with hp hq,
+  exact hp,
 end
 
 theorem weaken_conj_left :
   (P∧Q) → Q  :=
 begin
-  sorry,
+  intro PeQ,
+  cases PeQ with hp hq,
+  exact hq,
 end
 
 theorem conj_idempot :
   (P∧P) ↔ P :=
 begin
-  sorry,
+  split,
+  intro PeP,
+  cases PeP with hp,
+  exact hp,
+  intro hp1,
+  split,
+  exact hp1,
+  exact hp1,
 end
 
 theorem disj_idempot :
   (P∨P) ↔ P  :=
 begin
-  sorry,
+  split,
+  intro PorP,
+  cases PorP with hp1 hp2,
+  exact hp1,
+  exact hp2,
+  intro hp,
+  left,
+  exact hp,
 end
 
 end propositional
