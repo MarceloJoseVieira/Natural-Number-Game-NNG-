@@ -1,0 +1,89 @@
+example (P Q : Type) (p : P) (h : P → Q) : Q :=
+begin
+exact h(p),
+end
+
+example : mynat → mynat :=
+begin
+intro n,
+exact n,
+end
+
+example (P Q R S T U: Type)
+(p : P)
+(h : P → Q)
+(i : Q → R)
+(j : Q → T)
+(k : S → T)
+(l : T → U)
+: U :=
+begin
+have q := h(p),
+have t : T := j(q),
+have u : U := l(t),
+exact u,
+end
+
+example (P Q R S T U: Type)
+(p : P)
+(h : P → Q)
+(i : Q → R)
+(j : Q → T)
+(k : S → T)
+(l : T → U)
+: U :=
+begin
+apply l,
+apply j,
+apply h,
+exact p,
+end
+
+example (P Q : Type) : P → (Q → P) :=
+begin
+intro p,
+intro q,
+exact p,
+end
+
+example (P Q R : Type) : (P → (Q → R)) → ((P → Q) → (P → R)) :=
+begin
+intros f h p,
+apply f,
+exact p,
+apply h,
+exact p,
+end
+
+example (P Q F : Type) : (P → Q) → ((Q → F) → (P → F)) :=
+begin
+intros f q p,
+apply q,
+apply f,
+exact p,
+end
+
+example (P Q : Type) : (P → Q) → ((Q → empty) → (P → empty)) :=
+begin
+intros f h p,
+apply h,
+apply f,
+exact p,
+end
+
+example (A B C D E F G H I J K L : Type)
+(f1 : A → B) (f2 : B → E) (f3 : E → D) (f4 : D → A) (f5 : E → F)
+(f6 : F → C) (f7 : B → C) (f8 : F → G) (f9 : G → J) (f10 : I → J)
+(f11 : J → I) (f12 : I → H) (f13 : E → H) (f14 : H → K) (f15 : I → L)
+ : A → L :=
+begin
+intro a,
+apply f15,
+apply f11,
+apply f9,
+apply f8,
+apply f5,
+apply f2,
+apply f1,
+exact a,
+end
